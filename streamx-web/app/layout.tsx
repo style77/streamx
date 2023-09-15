@@ -11,7 +11,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { UserProvider } from "@/context/user.context"
 import Head from "next/head"
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
