@@ -29,7 +29,19 @@ export function getRelativeTime(time: string | number | Date) {
 }
 
 export const getUserAvatar = (username: string) => {
-  return `https://ui-avatars.com/api/?rounded=true&name=${username}&background=random`
+  const colors = [
+    "EF4444",
+    "3B82F6",
+    "10B981",
+    "F59E0B",
+    "6366F1",
+    "8B5CF6",
+    "EC4899",
+  ]
+  const charCode = username.charCodeAt(0)
+  const colorIndex = charCode % colors.length
+  const color = colors[colorIndex]
+  return `https://ui-avatars.com/api/?rounded=true&name=${username}&background=${color}`
 }
 
 export const getUsernameColor = (username: string) => {
