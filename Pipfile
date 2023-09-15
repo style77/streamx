@@ -4,8 +4,19 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+python-dotenv = "*"
+psycopg2 = "*"
+django-allauth = "*"
+dj-rest-auth = {extras = ["with_social"], version = "==4.0.0"}
+channels = "*"
+django-cors-headers = "*"
+daphne = "*"
+djangorestframework-simplejwt = {extras = ["crypto"], version = "*"}
+channels-redis = "*"
 
 [dev-packages]
+flake8 = "*"
+black = "*"
 
 [requires]
 python_version = "3.11"
