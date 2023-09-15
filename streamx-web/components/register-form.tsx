@@ -109,7 +109,7 @@ export function RegisterForm() {
                                 <Input placeholder="style77" {...field} className="lowercase" />
                             </FormControl>
                             <FormDescription>
-                                This is your public display name. You won't be able to
+                                This is your public display name. You won&apos;t be able to
                                 change this later. Remember, your username is your brand, keep it short and sweet!
                             </FormDescription>
                             <FormMessage />

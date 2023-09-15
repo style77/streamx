@@ -9,6 +9,7 @@ import { Navbar } from "@/components/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import { UserProvider } from "@/context/user.context"
+import Head from "next/head"
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +36,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <head />
+        <Head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width" />
+        </Head>
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
