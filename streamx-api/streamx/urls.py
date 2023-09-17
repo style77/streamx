@@ -22,4 +22,5 @@ urlpatterns = [
     path(r"api/user/", include("users.urls")),
     path(r"api/stream/", include("stream.urls")),
     # path('api/chat/', include('chat.urls')),
+    path(r'api/health/', include('health_check.urls')),
 ]

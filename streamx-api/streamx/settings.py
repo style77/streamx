@@ -60,7 +60,19 @@ INSTALLED_APPS = [
     # Apps
     "users.apps.UsersConfig",
     "chat.apps.ChatConfig",
+    # Health
+    "health_check",
+    "health_check.db",
+    "health_check.cache",
+    "health_check.contrib.migrations",
+    "health_check.contrib.psutil",
+    "health_check.contrib.redis",
 ]
+
+HEALTH_CHECK = {
+    "DISK_USAGE_MAX": 90,  # percent
+    "MEMORY_MIN": 100,  # in MB
+}
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -189,6 +201,7 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+REDIS_URL = os.getenv("REDIS_URL")
 
 CHANNEL_LAYERS = {
     "default": {
@@ -196,7 +209,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [
                 {
-                    "address": os.getenv("REDIS_URL"),
+                    "address": REDIS_URL,
                     "ssl_cert_reqs": None,
                 }
             ]
