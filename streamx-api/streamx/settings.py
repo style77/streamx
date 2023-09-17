@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -57,9 +56,6 @@ INSTALLED_APPS = [
     "dj_rest_auth.registration",
     "allauth",
     "allauth.account",
-    # Apps
-    "users.apps.UsersConfig",
-    "chat.apps.ChatConfig",
     # Health
     "health_check",
     "health_check.db",
@@ -67,6 +63,10 @@ INSTALLED_APPS = [
     "health_check.contrib.migrations",
     "health_check.contrib.psutil",
     "health_check.contrib.redis",
+    # Apps
+    "users.apps.UsersConfig",
+    "chat.apps.ChatConfig",
+    "stream.apps.StreamConfig",
 ]
 
 HEALTH_CHECK = {

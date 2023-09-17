@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
 """
 
 import os
+import django
 
 from django.core.asgi import get_asgi_application
 
@@ -17,6 +18,8 @@ from chat import routing
 from chat.middleware import JwtAuthMiddlewareStack
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "streamx.settings")
+
+django.setup()
 
 application = ProtocolTypeRouter(
     {
