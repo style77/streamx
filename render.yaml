@@ -19,6 +19,7 @@ services:
           property: connectionString
       - key: REDIS_URL
         fromService:
+          type: redis
           name: streamx-redis
           property: connectionString
       - key: DJANGO_SECRET_KEY
@@ -27,7 +28,7 @@ services:
         value: 4
   - type: web
     name: streamx-web
-    env: noce
+    env: node
     plan: free
     buildCommand: yarn; yarn build
     startCommand: yarn start
@@ -37,8 +38,9 @@ services:
       value: production
     - key: API_URL
       fromService:
+        type: web
         name: streamx-api
-        property: url
+        property: connectionString
     - key: NEXT_PUBLIC_HLS_URL
       value: google.com
   - type: redis
