@@ -1,5 +1,7 @@
 databases:
   - name: streamx-db
+    plan: free
+    region: frankfurt
     databaseName: streamx
     user: streamx
 
@@ -30,23 +32,25 @@ services:
     name: streamx-web
     env: node
     plan: free
+    region: frankfurt
     buildCommand: yarn; yarn build
     startCommand: yarn start
     rootDir: streamx-web
     envVars:
-    - key: NODE_ENV
-      value: production
-    - key: API_URL
-      fromService:
-        type: web
-        name: streamx-api
-        property: hostport
-    - key: NEXT_PUBLIC_HLS_URL
-      value: google.com
+      - key: NODE_ENV
+        value: production
+      - key: API_URL
+        fromService:
+          type: web
+          name: streamx-api
+          property: hostport
+      - key: NEXT_PUBLIC_HLS_URL
+        value: google.com
   - type: redis
     name: streamx-redis
+    region: frankfurt
+    plan: free
     ipAllowList:
       - source: 0.0.0.0/0
         description: Allow all incoming traffic
-    plan: free
     maxmemoryPolicy: volatile-lru
