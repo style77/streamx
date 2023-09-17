@@ -40,7 +40,7 @@ services:
       fromService:
         type: web
         name: streamx-api
-        property: connectionString
+        property: hostport
     - key: NEXT_PUBLIC_HLS_URL
       value: google.com
   - type: redis
