@@ -1,0 +1,50 @@
+databases:
+  - name: streamx-db
+    databaseName: streamx
+    user: streamx
+
+services:
+  - type: web
+    name: streamx-api
+    runtime: python
+    region: frankfurt
+    plan: free
+    rootDir: streamx-api
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn streamx.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: streamx-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: streamx-redis
+          property: connectionString
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+  - type: web
+    name: streamx-web
+    env: noce
+    plan: free
+    buildCommand: yarn; yarn build
+    startCommand: yarn start
+    rootDir: streamx-web
+    envVars:
+    - key: NODE_ENV
+      value: production
+    - key: API_URL
+      fromService:
+        name: streamx-api
+        property: url
+    - key: NEXT_PUBLIC_HLS_URL
+      value: google.com
+  - type: redis
+    name: streamx-redis
+    ipAllowList:
+      - source: 0.0.0.0/0
+        description: Allow all incoming traffic
+    plan: free
+    maxmemoryPolicy: volatile-lru
