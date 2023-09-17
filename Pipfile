@@ -13,6 +13,8 @@ django-cors-headers = "*"
 daphne = "*"
 djangorestframework-simplejwt = {extras = ["crypto"], version = "*"}
 channels-redis = "*"
+dj-database-url = "*"
+gunicorn = "*"
 
 [dev-packages]
 flake8 = "*"
