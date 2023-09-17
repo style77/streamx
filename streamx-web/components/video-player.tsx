@@ -17,10 +17,16 @@ export function VideoPlayer({ username, isStreaming }: { username: string, isStr
                         autoPlay={true}
                         controls={true}
                         playerRef={playerRef}
-                        src={`http://${process.env.HLS_URL}/hls/${username}/index.m3u8`}
+                        src={`${process.env.NEXT_PUBLIC_HLS_URL}/hls/${username}/index.m3u8`}
                         hlsConfig={
                             {
-                                liveDurationInfinity: true,
+                                "enableWorker": true,
+                                "maxBufferLength": 1,
+                                "liveBackBufferLength": 0,
+                                "liveSyncDuration": 0,
+                                "liveMaxLatencyDuration": 5,
+                                "liveDurationInfinity": true,
+                                "highBufferWatchdogPeriod": 1,
                             }
                         }
                     />

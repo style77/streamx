@@ -90,12 +90,6 @@ export function Chat({
         [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
     }[readyState]
 
-    if (isLoading || error) {
-        return <div className="flex flex-col items-center justify-center h-full">
-            <span className="text-sm text-gray-500">Loading...</span>
-        </div>
-    }
-
     const parseEmotes = (message: string) => {
         // Replace emote names with emote images using emoteMap
         let parsedMessage = message;
@@ -116,7 +110,7 @@ export function Chat({
         <div className="flex-col hidden md:flex min-h-full bg-gray-900 border-l border-gray-800">
             <div className="flex flex-row items-center justify-between p-4 border-b border-gray-800">
                 <div className="flex flex-row items-center gap-2">
-                    <Image src={getUserAvatar(username)} alt="User avatar" width={32} height={32} className="rounded-full" />
+                    <Image src={getUserAvatar(username.slice(1))} alt="User avatar" width={32} height={32} className="rounded-full" />
                     <div className="flex flex-col">
                         <div className="flex flex-row space-x-2 items-center">
                             <span className="text-sm font-bold">{username}</span>
@@ -136,7 +130,9 @@ export function Chat({
                             </div>
                         </div>
                     </li>
-                )) : (
+                )) : error ? (
+                    <span className="text-sm text-gray-500 p-4">An error occurred while connecting to chat.</span>
+                ) : (
                     <span className="text-sm text-gray-500 p-4">{connectionStatus}...</span>
                 )}
             </ul>

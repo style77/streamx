@@ -19,7 +19,7 @@ export default function Page({ params }: {
         const checkIfStreaming = async () => {
             let response;
             try {
-                response = await fetch(`http://${process.env.NEXT_PUBLIC_HLS_URL}/hls/${username}/index.m3u8`);
+                response = await fetch(`${process.env.NEXT_PUBLIC_HLS_URL}/hls/${username.slice(1)}/index.m3u8`);
             } catch (error) {
                 setIsStreaming(false);
                 return;
