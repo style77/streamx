@@ -13,7 +13,7 @@ services:
     plan: free
     rootDir: streamx-api
     buildCommand: "./build.sh"
-    startCommand: gunicorn streamx.asgi:application -w 4 -k uvicorn.UvicornWorker
+    startCommand: gunicorn streamx.asgi:application -w 4 -k uvicorn.workers.UvicornWorker
     healthCheckPath: /api/health?format=json
     envVars:
       - key: DATABASE_URL
