@@ -8,10 +8,11 @@ databases:
 services:
   - type: web
     name: streamx-api
-    runtime: docker
+    runtime: python
     region: frankfurt
     plan: free
     rootDir: streamx-api
+    startCommand: gunicorn streamx.asgi:application -w 4 -k uvicorn.UvicornWorker
     healthCheckPath: /api/health?format=json
     envVars:
       - key: DATABASE_URL
@@ -29,6 +30,8 @@ services:
         value: 4
       - key: DJANGO_SETTINGS_MODULE
         value: streamx.settings
+      - key: PYTHON_VERSION
+        value: 3.11.3
   - type: web
     name: streamx-web
     env: node
