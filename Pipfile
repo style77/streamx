@@ -15,6 +15,9 @@ djangorestframework-simplejwt = {extras = ["crypto"], version = "*"}
 channels-redis = "*"
 dj-database-url = "*"
 gunicorn = "*"
+django-health-check = "*"
+psutil = "*"
+uvicorn = "*"
 
 [dev-packages]
 flake8 = "*"

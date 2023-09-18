@@ -8,12 +8,11 @@ databases:
 services:
   - type: web
     name: streamx-api
-    runtime: python
+    runtime: docker
     region: frankfurt
     plan: free
     rootDir: streamx-api
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn streamx.wsgi:application"
+    healthCheckPath: /api/health?format=json
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -28,8 +27,8 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
-      - key: PYTHON_VERSION
-        value: 3.11.3
+      - key: DJANGO_SETTINGS_MODULE
+        value: streamx.settings
   - type: web
     name: streamx-web
     env: node
