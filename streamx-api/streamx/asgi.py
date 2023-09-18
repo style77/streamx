@@ -14,16 +14,18 @@ from django.core.asgi import get_asgi_application
 
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.routing import ProtocolTypeRouter, URLRouter
-from chat import routing
-from chat.middleware import JwtAuthMiddlewareStack
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "streamx.settings")
-
 django.setup()
+asgi_application = get_asgi_application()
+
+from chat import routing  # noqa: E402
+from chat.middleware import JwtAuthMiddlewareStack  # noqa: E402
+
 
 application = ProtocolTypeRouter(
     {
-        "http": get_asgi_application(),
+        "http": asgi_application,
         "websocket": AllowedHostsOriginValidator(
             JwtAuthMiddlewareStack(URLRouter(routing.websocket_urlpatterns))
         ),
