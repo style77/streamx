@@ -34,8 +34,8 @@ export default function Page({ params }: {
     }, []);
 
     return (
-        <section className="flex flex-col w-full">
-            <div className="flex flex-row w-full">
+        <section className="flex flex-col w-full h-full">
+            <div className="flex flex-row w-full h-full">
                 <VideoPlayer username={username.slice(1)} isStreaming={isStreaming} />
                 <Chat username={username.trim()} isStreaming={isStreaming} />
             </div>

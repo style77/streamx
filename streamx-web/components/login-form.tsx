@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -18,9 +17,7 @@ import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { useState } from "react"
 
-import axios, { Axios, AxiosError } from "axios"
 import { useUser } from "@/context/user.context"
-import { User } from "@/types/User"
 
 const FormSchema = z.object({
     email: z.string().email(),
@@ -39,14 +36,11 @@ export function LoginForm() {
     const { login } = useUser()
 
     async function onSubmit(data: z.infer<typeof FormSchema>) {
-        setError("")
-        try {
-            setLoading(true);
+        setError("");
+        setLoading(true);
 
-            const responseData = await login(data.email, data.password) as unknown as {
-                user: User;
-                error?: string;
-            }
+        try {
+            const responseData = await login(data.email, data.password)
 
             toast({
                 title: `Hello back ${responseData.user.username}!`,
@@ -56,13 +50,8 @@ export function LoginForm() {
                     </div>
                 ),
             });
-            window.location.href = "/";
         } catch (err: any) {
-            if (axios.isAxiosError(err)) {
-                setError(err.response?.data.error || 'An error occurred.');
-            } else {
-                setError(err.message ? err.message : 'An error occurred.');
-            }
+            setError(err.message || 'An error occurred.');
         } finally {
             setLoading(false);
         }

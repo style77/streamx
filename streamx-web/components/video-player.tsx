@@ -29,9 +29,10 @@ export function VideoPlayer({ username, isStreaming }: { username: string, isStr
                                 "highBufferWatchdogPeriod": 1,
                             }
                         }
+                        className="w-full h-screen"
                     />
                 ) : (
-                    <div className="flex items-center justify-center w-full h-[80vh] bg-black">
+                    <div className="flex items-center justify-center w-full h-screen bg-black">
                         <p className="text-white">Stream is offline</p>
                     </div>
                 )

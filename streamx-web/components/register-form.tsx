@@ -71,13 +71,8 @@ export function RegisterForm() {
                     </div>
                 ),
             });
-            window.location.href = "/";
         } catch (err: any) {
-            if (axios.isAxiosError(err)) {
-                setError(err.response?.data.error || 'An error occurred.');
-            } else {
-                setError('An error occurred. ' + err);
-            }
+            setError(err.message || 'An error occurred.')
         } finally {
             setLoading(false);
         }

@@ -148,8 +148,6 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-WSGI_APPLICATION = "streamx.wsgi.application"
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
