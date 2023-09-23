@@ -34,3 +34,7 @@ start nginx
 ## Production
 
 I use Render to deploy my app. You can use any other service, but you need to have 3 services running: API, Frontend and RTMP server. To run server with render.yaml file just go to Render.com dashboard and select Blueprints.
+
+## Conclusion
+
+I learned a lot from this project. I learned how to use Django Rest Framework, Channels and nginx-rtmp. I also learned how to deploy my app to Render.com. I'm happy with the result, but there are still some things to do, so if you want to contribute, feel free to do so. I will be happy to see your pull requests.
