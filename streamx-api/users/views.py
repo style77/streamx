@@ -38,8 +38,7 @@ class UserSearchView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        query = self.request.query_params.get('q', '')
-        if query:
+        if query := self.request.query_params.get('q', ''):
             return User.objects.filter(username__icontains=query)
         else:
             return User.objects.none()
